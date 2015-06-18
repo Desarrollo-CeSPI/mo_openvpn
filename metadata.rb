@@ -1,0 +1,7 @@
+name             'mo_openvpn'
+maintainer       'YOUR_NAME'
+maintainer_email 'YOUR_EMAIL'
+license          'All rights reserved'
+description      'Installs/Configures mo_openvpn'
+long_description 'Installs/Configures mo_openvpn'
+version          '0.1.0'

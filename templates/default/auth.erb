@@ -1,0 +1,12 @@
+<LDAP>
+  URL       <%= @ldap_url %>
+  Timeout   15
+  TLSEnable no
+  FollowReferrals yes
+</LDAP>
+
+<Authorization>
+  BaseDN        <%= @ldap_base_dn %>
+  SearchFilter  <%= @ldap_search_filter %>
+  RequireGroup  false
+</Authorization>

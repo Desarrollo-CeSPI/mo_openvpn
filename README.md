@@ -1,42 +1,37 @@
 # mo_openvpn-cookbook
 
-TODO: Enter the cookbook description here.
+This cookbook installs OpenVPN using LDAP as the authentication method. It is
+currently under development.
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
+Tested in Ubuntu 14.04.
 
-## Attributes
+## License
 
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['mo_openvpn']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+The MIT License (MIT)
 
-## Usage
+Copyright (c) 2014 Christian Rodriguez & Leandro Di Tommaso
 
-### mo_openvpn::default
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Include `mo_openvpn` in your node's `run_list`:
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-```json
-{
-  "run_list": [
-    "recipe[mo_openvpn::default]"
-  ]
-}
-```
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
-## License and Authors
+## Authors
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+* Author:: Christian Rodriguez (<chrodriguez@gmail.com>)
+* Author:: Leandro Di Tommaso (<leandro.ditommaso@mikroways.net>)

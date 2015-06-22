@@ -1,0 +1,22 @@
+export EASY_RSA="<%= @easy_rsa_dir %>"
+
+export OPENSSL="openssl"
+export PKCS11TOOL="pkcs11-tool"
+export GREP="grep"
+export PKCS11_MODULE_PATH="dummy"
+export PKCS11_PIN="dummy"
+export KEY_SIZE=2048
+export CA_EXPIRE=3650
+export KEY_EXPIRE=3650
+
+export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA`
+export KEY_DIR="<%= @openvpn_install_dir%>/keys"
+
+export KEY_COUNTRY="<%= @key['country'] %>"
+export KEY_PROVINCE="<%= @key['province'] %>"
+export KEY_CITY="<%= @key['city'] %>"
+export KEY_ORG="<%= @key['org'] %>"
+export KEY_OU="<%= @key['ou'] %>"
+export KEY_EMAIL="<%= @key['email'] %>"
+
+export KEY_NAME="EasyRSA"

@@ -1,6 +1,7 @@
 # Certificates parameters.
 default['mo_openvpn']['install_dir']                      = '/etc/openvpn'
 default['mo_openvpn']['easy_rsa_install_dir']             = '/usr/share/easy-rsa'
+default['mo_openvpn']['keys_dir']                         = '/etc/openvpn/keys'
 
 default['mo_openvpn']['key']['country']                   = 'AR'
 default['mo_openvpn']['key']['province']                  = 'Buenos Aires'

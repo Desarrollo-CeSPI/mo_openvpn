@@ -11,6 +11,7 @@ template '/etc/openvpn/auth' do
      ldap_basedn: node['mo_openvpn']['ldap']['basedn'],
      ldap_search_filter: node['mo_openvpn']['ldap']['search_filter']
   })
+  notifies :restart, 'service[openvpn]'
 end
 
 template '/etc/openvpn/server.conf' do
@@ -23,6 +24,7 @@ template '/etc/openvpn/server.conf' do
     cert_filename: "#{node['fqdn']}.crt",
     key_filename: "#{node['fqdn']}.key"
   })
+  notifies :restart, 'service[openvpn]'
 end
 
 template "#{node['mo_openvpn']['easy_rsa_install_dir']}/vars" do
@@ -34,4 +36,21 @@ template "#{node['mo_openvpn']['easy_rsa_install_dir']}/vars" do
     openvpn_install_dir: node['mo_openvpn']['install_dir'],
     key: node['mo_openvpn']['key']
   })
+  notifies :restart, 'service[openvpn]'
+end
+
+cookbook_file '/etc/default/openvpn' do
+  source 'openvpn'
+  mode 0644
+  notifies :restart, 'service[openvpn]'
+end
+
+execute 'Create empty CRL file if not exist' do
+  command "touch #{node['mo_openvpn']['keys_dir']}/crl.pem"
+  not_if { ::File.exists?("#{node['mo_openvpn']['keys_dir']}/crl.pem")}
+end
+
+service 'openvpn' do
+  action :enable
+  supports [:start, :stop, :restart, :reload]
 end

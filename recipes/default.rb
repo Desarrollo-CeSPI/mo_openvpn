@@ -13,6 +13,11 @@ template "#{node['mo_openvpn']['easy_rsa_install_dir']}/vars" do
   })
 end
 
+cookbook_file "#{node['mo_openvpn']['easy_rsa_install_dir']}/vars-revoke" do
+  source 'vars-revoke'
+  mode 0644
+end
+
 include_recipe 'mo_openvpn::build-server-certificates'
 
 template '/etc/openvpn/auth' do
@@ -44,11 +49,6 @@ cookbook_file '/etc/default/openvpn' do
   source 'openvpn'
   mode 0644
   notifies :restart, 'service[openvpn]'
-end
-
-execute 'Create empty CRL file if not exist' do
-  command "touch #{node['mo_openvpn']['keys_dir']}/crl.pem"
-  not_if { ::File.exists?("#{node['mo_openvpn']['keys_dir']}/crl.pem")}
 end
 
 service 'openvpn' do

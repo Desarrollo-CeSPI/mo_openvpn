@@ -1,0 +1,4 @@
+export KEY_CN=""
+export KEY_OU=""
+export KEY_NAME=""
+export KEY_ALTNAMES=""

@@ -1,6 +1,8 @@
 package 'openvpn'
 package 'openvpn-auth-ldap'
 package 'easy-rsa'
+package 'mutt'
+package 'zip'
 
 template "#{node['mo_openvpn']['easy_rsa_install_dir']}/vars" do
   source 'easy-rsa-vars.erb'

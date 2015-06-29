@@ -2,7 +2,12 @@ def mo_openvpn_create_users(users)
   users.each do |user|
 
     execute "notify_admin_about_#{user}" do
-      command "echo 'Se adjuntan certificados del usuario #{user}.' | mutt #{node['mo_openvpn']['admin_email']} -s '[VPN] Nuevo certificado' -a '#{node['mo_openvpn']['keys_dir']}/#{user}.zip'"
+      command <<-SCRIPT
+        echo 'Se adjuntan certificados del usuario #{user} para el servidor #{node['fqdn']}.' |
+        mutt #{node['mo_openvpn']['admin_email']} \
+          -s '[VPN] Nuevo certificado para #{user} en #{node['hostname']}' \
+          -a '#{node['mo_openvpn']['keys_dir']}/#{user}.zip'
+      SCRIPT
       action :nothing
     end
 

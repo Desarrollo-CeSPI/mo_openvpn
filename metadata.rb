@@ -6,4 +6,6 @@ description      'Installs/Configures mo_openvpn'
 long_description 'Installs/Configures mo_openvpn'
 version          '0.1.0'
 
-depends 'apt',   '~>2.7.0'
+depends 'apt',              '~> 2.7.0'
+depends 'simple_iptables',  '~> 0.7.0'
+depends 'sysctl',           '~> 0.6.0'

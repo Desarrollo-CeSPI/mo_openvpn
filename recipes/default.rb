@@ -57,3 +57,17 @@ service 'openvpn' do
   action :enable
   supports [:start, :stop, :restart, :reload]
 end
+
+sysctl_param 'net.ipv4.ip_forward' do
+  value 1
+end
+
+node.set["simple_iptables"]["ipv4"]["tables"] = (Array(node["simple_iptables"]["ipv4"]["tables"]) + [ "nat" ]).uniq
+
+simple_iptables_rule "nat" do
+  table "nat"
+  chain "POSTROUTING"
+  direction "POSTROUTING"
+  rule "--source #{node['mo_openvpn']['config']['server'].gsub(' ', '/')}"
+  jump "SNAT --to-source #{node['ipaddress']}"
+end

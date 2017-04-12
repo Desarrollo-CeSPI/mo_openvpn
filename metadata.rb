@@ -4,7 +4,7 @@ maintainer_email 'chrodriguez@gmail.com leandro.ditommaso@mikroways.net'
 license          'MIT'
 description      'Installs/Configures mo_openvpn'
 long_description 'Installs/Configures mo_openvpn'
-version          '0.1.0'
+version          '0.1.2'
 
 depends 'apt',              '~> 2.7.0'
 depends 'simple_iptables',  '~> 0.7.0'

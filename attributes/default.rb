@@ -21,6 +21,7 @@ default['mo_openvpn']['ldap']['search_filter']            = "(uid=%u)"
 
 # Network configuration.
 default['mo_openvpn']['config']['server']                 = '10.8.0.0 255.255.255.0'
+default['mo_openvpn']['config']['server_tcp']                 = '10.9.0.0 255.255.255.0'
 
 # Server specific
 # client 'push routes', attribute is treated as a helper

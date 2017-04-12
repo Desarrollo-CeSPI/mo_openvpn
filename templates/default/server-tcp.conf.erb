@@ -1,0 +1,26 @@
+port 443
+proto tcp
+dev tun
+
+ca keys/ca.crt
+cert keys/<%= @cert_filename %>
+key keys/<%= @key_filename %>
+dh keys/dh.pem
+crl-verify keys/crl.pem
+
+server <%= @server_network %>
+
+ifconfig-pool-persist ipp.txt
+
+<% @routes.each do |route| %>
+  push "route <%= route %>"
+<% end %>
+
+keepalive 10 120
+comp-lzo
+persist-key
+persist-tun
+verb 3
+status openvpn-status.log
+
+plugin /usr/lib/openvpn/openvpn-auth-ldap.so /etc/openvpn/auth

@@ -47,6 +47,19 @@ template '/etc/openvpn/server.conf' do
   notifies :restart, 'service[openvpn]'
 end
 
+template '/etc/openvpn/server-tcp.conf' do
+  source 'server-tcp.conf.erb'
+  owner 'root'
+  group 'root'
+  variables({
+    server_network: node['mo_openvpn']['config']['server_tcp'],
+    routes: node['mo_openvpn']['push_routes'],
+    cert_filename: "#{node['fqdn']}.crt",
+    key_filename: "#{node['fqdn']}.key"
+  })
+  notifies :restart, 'service[openvpn]'
+end
+
 cookbook_file '/etc/default/openvpn' do
   source 'openvpn'
   mode 0644
@@ -64,10 +77,14 @@ end
 
 node.set["simple_iptables"]["ipv4"]["tables"] = (Array(node["simple_iptables"]["ipv4"]["tables"]) + [ "nat" ]).uniq
 
+nets = [node['mo_openvpn']['config']['server'],node['mo_openvpn']['config']['server_tcp']].map do |net|
+  "--source #{net.gsub(' ', '/')}"
+end
+
 simple_iptables_rule "nat" do
   table "nat"
   chain "POSTROUTING"
+  rule nets
   direction "POSTROUTING"
-  rule "--source #{node['mo_openvpn']['config']['server'].gsub(' ', '/')}"
   jump "SNAT --to-source #{node['ipaddress']}"
 end
